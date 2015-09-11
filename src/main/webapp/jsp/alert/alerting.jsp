@@ -18,7 +18,7 @@
 				<div class="panel-heading">
 					<div class="pull-left">
 						<h3 class="panel-title pull-left">
-							<i class="icon-bell"></i>&nbsp; Viewing active alerts
+							<i class="icon-bell"></i>&nbsp; Viewing active alertsxx
 						</h3>
 					</div>
 					<div class="pull-right">
