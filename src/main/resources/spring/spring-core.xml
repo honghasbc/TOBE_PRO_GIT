@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+          http://www.springframework.org/schema/data/jpa
+           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Scans for annotated classes -->
+	<context:component-scan base-package="com.heb.jaf" />
+	<context:property-placeholder location="classpath:application.properties" />
+
+	<!-- JPA Repository Configuration This is where the entity manager for each 
+		data source is configured. -->
+	<!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="dataSource"/> <property name="jpaVendorAdapter"> 
+		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
+		<property name="generateDdl" value="false" /> <property name="showSql" value="false" 
+		/> <property name="database" value="MYSQL" /> </bean> </property> <property 
+		name="persistenceUnitName" value="punit" /> </bean> <jpa:repositories base-package="com.heb.jaf.repository" 
+		entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="jpaTransactionManager"> 
+		</jpa:repositories> Tranaction Managers <tx:annotation-driven /> <bean id="jpaTransactionManager" 
+		class="org.springframework.orm.jpa.JpaTransactionManager"> <property name="entityManagerFactory" 
+		ref="entityManagerFactory"/> </bean> <bean id="jmsTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager"> 
+		<property name="connectionFactory" ref="connectionFactory" /> </bean> -->
+
+
+	<!-- Environment Configuration Congfigurations for Local, Dev, Cert and 
+		Prod go here for datasources and jms connection factories You can indicate 
+		the environment to point to by passing VM arg -Dspring.profiles.active={env} -->
+
+	<!-- Specify which log4j config file corresponds to our environment -->
+	<beans profile="local">
+		<bean id="log4jInitialization"
+			class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+
+			<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+			<property name="targetMethod" value="initLogging" />
+			<property name="arguments">
+				<list>
+					<value>classpath:logging/log4j-local.properties</value>
+				</list>
+			</property>
+		</bean>
+
+		<!-- Sample datasource config for MYSQL <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" 
+			destroy-method="close"> <property name="driverClass" value="com.mysql.jdbc.Driver" 
+			/> <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jaf?autoReconnect=true" 
+			/> <property name="username" value="root" /> <property name="password" value="admin" 
+			/> <property name="idleConnectionTestPeriod" value="60"/> <property name="idleMaxAge" 
+			value="240"/> <property name="maxConnectionsPerPartition" value="30"/> <property 
+			name="minConnectionsPerPartition" value="10"/> <property name="partitionCount" 
+			value="3"/> <property name="acquireIncrement" value="5"/> <property name="statementsCacheSize" 
+			value="100"/> <property name="releaseHelperThreads" value="3"/> </bean> -->
+
+		<!-- Example of a TIBCO EMS connection factory <bean id="connectionFactoryEms" 
+			class="org.springframework.jms.connection.SingleConnectionFactory"> <property 
+			name="targetConnectionFactory"> <bean class="com.tibco.tibjms.TibjmsConnectionFactory"> 
+			<constructor-arg index="0" value="tcp://<url>:61616" /> </bean> </property> 
+			</bean> </beans> <beans profile="dev"> <bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"> 
+			<property name="targetClass" value="org.springframework.util.Log4jConfigurer" 
+			/> <property name="targetMethod" value="initLogging" /> <property name="arguments"> 
+			<list> <value>classpath:logging/log4j-dev.properties</value> </list> </property> 
+			</bean> <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" 
+			destroy-method="close"> <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+			/> <property name="jdbcUrl" value="jdbc:mysql://calvert.corp.heb.com:3306/jaf?autoReconnect=true" 
+			/> <property name="username" value="root" /> <property name="password" value="admin" 
+			/> <property name="idleConnectionTestPeriod" value="60"/> <property name="idleMaxAge" 
+			value="240"/> <property name="maxConnectionsPerPartition" value="30"/> <property 
+			name="minConnectionsPerPartition" value="10"/> <property name="partitionCount" 
+			value="3"/> <property name="acquireIncrement" value="5"/> <property name="statementsCacheSize" 
+			value="100"/> <property name="releaseHelperThreads" value="3"/> </bean> -->
+
+	</beans>
+
+	<beans profile="cert">
+		<bean id="log4jInitialization"
+			class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+
+			<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+			<property name="targetMethod" value="initLogging" />
+			<property name="arguments">
+				<list>
+					<value>classpath:logging/log4j-cert.properties</value>
+				</list>
+			</property>
+		</bean>
+
+	</beans>
+
+	<beans profile="prod">
+		<bean id="log4jInitialization"
+			class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+
+			<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+			<property name="targetMethod" value="initLogging" />
+			<property name="arguments">
+				<list>
+					<value>classpath:logging/log4j-prod.properties</value>
+				</list>
+			</property>
+		</bean>
+
+	</beans>
+
+</beans>

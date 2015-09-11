@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="heb.template" template="/jsp/common/base.jsp">
+		<put-attribute name="title" value="TOBEPRO" />
+		<put-attribute name="header" value="/jsp/common/header.jsp" />
+		<put-attribute name="menu" value="/jsp/common/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/jsp/common/footer.jsp" />
+		<put-list-attribute name="stylesInherit">
+			<add-attribute value="/style/jaf4.css" />
+		</put-list-attribute>
+		<put-list-attribute name="styles" />
+		<put-list-attribute name="scriptsInherit">
+			<add-attribute value="/script/jquery.js" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" />
+	</definition>
+
+	<!-- LOGIN PAGE -->
+	<definition name="login.tile" extends="heb.template">
+		<put-attribute name="title" value="TOBEPRO - LOGIN" />
+		<put-attribute name="body" value="/jsp/common/login.jsp" />
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/login.js" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="coms.template" template="/jsp/common/main.jsp">
+		<put-attribute name="title" value="Customer Order Management System" />
+		<put-attribute name="header" value="/jsp/common/header_coms.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/jsp/common/footer_coms.jsp" />
+		<put-list-attribute name="stylesInherit">
+			<add-attribute value="/style/font-awesome.css" />
+			<add-attribute value="/style/bootstrap.min.css" />
+			<add-attribute value="/style/coms.css" />
+		</put-list-attribute>
+		<put-list-attribute name="styles" />
+		<put-list-attribute name="scriptsInherit">
+			<add-attribute value="/script/html5shiv.js" />
+			<add-attribute value="/script/respond.min.js" />
+			<add-attribute value="/script/jquery.js" />
+			<add-attribute value="/script/bootstrap.min.js" />
+			<add-attribute value="/script/moment.js" />
+			<add-attribute value="/script/twitter-bootstrap-hover-dropdown.min.js" />
+			<add-attribute value="/script/coms.js" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" />
+	</definition>
+
+	<!-- HOME PAGE -->
+	<definition name="home.index.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/home/index.jsp" />
+	</definition>
+
+	<!-- MONITOR PAGE -->
+	<definition name="monitor.orderStatistics.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/monitor/orderStatistics.jsp" />
+		<put-list-attribute name="styles" inherit="true">
+			<add-attribute value="/style/daterangepicker.css" />
+			<add-attribute value="/style/table.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/daterangepicker.js" />
+			<add-attribute value="https://www.google.com/jsapi" />
+			<add-attribute value="/script/orderstatistics.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="monitor.individualOrdStat.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/monitor/invidualOrdStat.jsp" />
+		<put-list-attribute name="styles" inherit="true">
+			<add-attribute value="/style/demo_table.css" />
+			<add-attribute value="/style/override-datatable-common.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/angular.min.js" />
+			<add-attribute value="/script/TableTools.js" />
+			<add-attribute value="/script/jquery.dataTables.js" />
+			<add-attribute value="/script/individualordstat.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="monitor.monitor1.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/monitor/lineItemDetails.jsp" />
+		<put-list-attribute name="styles" inherit="true">
+			<add-attribute value="/style/demo_table.css" />
+			<add-attribute value="/style/override-datatable-common.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/angular.min.js" />
+			<add-attribute value="/script/TableTools.js" />
+			<add-attribute value="/script/jquery.dataTables.js" />
+			<add-attribute value="/script/individualordstat.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="monitor.monitor2.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/monitor/monitor2.jsp" />
+		<put-list-attribute name="styles" inherit="true">
+		</put-list-attribute>
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/angular.min.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="monitor.lineitemdetail.tile" extends="coms.template">
+		<put-attribute name="body" value="/jsp/monitor/lineItemDetails.jsp" />
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/holder.js" />
+			<add-attribute value="/script/lineitem.js" />
+		</put-list-attribute>
+	</definition>
+
+
+
+	<definition name="monitor.ajaxGetData.tile" template="/jsp/monitor/ajaxGetData.jsp" />
+	<definition name="monitor.ajaxGetOrdById.tile" template="/jsp/monitor/ajaxGetOrdById.jsp" />
+	<definition name="monitor.ajaxGetOrdCommentsById.tile"
+		template="/jsp/monitor/ajaxGetOrdComtById.jsp" />
+	<definition name="monitor.ajaxGetStatHistory.tile" template="/jsp/monitor/ajaxGetOrdComtById.jsp" />
+
+
+	<!-- CUSTOMER SUPPORT PAGE -->
+	<definition name="customerSupport.customerSearch.tile"
+		extends="coms.template">
+		<put-attribute name="body"
+			value="/jsp/customerSupport/custSearch.jsp" />
+		<put-list-attribute name="styles" inherit="true">
+			<add-attribute value="/style/demo_table.css" />
+		</put-list-attribute>
+		<put-list-attribute name="scripts" inherit="false">
+			<add-attribute value="/script/TableTools.js" />
+			<add-attribute value="/script/jquery.dataTables.js" />
+			<add-attribute value="/script/customersearch.js" />
+
+		</put-list-attribute>
+	</definition>
+
+	<definition name="alert.index.tile" extends="coms.template">
+		<put-attribute name="title" value="Alerting" />
+		<put-attribute name="body" value="/jsp/alert/alerting.jsp" />
+	</definition>
+	<definition name="demoApp.index.tile" extends="coms.template">
+		<put-attribute name="title" value="Demo" />
+		<put-attribute name="body" value="/jsp/demo/demoApp.jsp" />
+	</definition>
+
+	<definition name="admin.code.table.tile" extends="coms.template">
+		<put-attribute name="title" value="Code Tables" />
+		<put-attribute name="body" value="/jsp/admin/codeTables.jsp" />
+		<put-list-attribute name="scripts" inherit="true">
+			<add-attribute value="/script/jquery.dataTables.js" />
+			<add-attribute value="/script/codeTables.js" />
+		</put-list-attribute>
+		<put-list-attribute name="styles" inherit="true">
+			<add-attribute value="/style/demo_table.css" />
+			<add-attribute value="/style/override-datatable-common.css" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="admin.ajax.get.code.table.tile" template="/jsp/admin/ajaxGetCodeTableData.jsp" />
+	
+<!-- 	restful webservices -->
+	<definition name="getdatafromws.index.tile" template="/jsp/restfulws/jsonDataOfWs.jsp" />
+
+</tiles-definitions>

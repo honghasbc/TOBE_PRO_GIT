@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<import resource="classpath:spring/security/security-core.xml" />
+
+
+	<security:http use-expressions="true">
+		<!-- This is where you add intercept urls for spring security, as follows -->
+		<!-- <security:intercept-url pattern="/api/monitor/**" access="hasRole('ROLE_QAUSR') 
+			or hasRole('ROLE_QAADM') or hasRole('ROLE_QAAPR')"/> -->
+		<!-- <security:intercept-url pattern="/api/customerSupport/**" access="hasRole('ROLE_QAUSR') 
+			or hasRole('ROLE_QAADM') or hasRole('ROLE_QAAPR')"/> -->
+		<!-- <security:intercept-url pattern="/api/alert/**" access="hasRole('ROLE_QAUSR') 
+			or hasRole('ROLE_QAADM') or hasRole('ROLE_QAAPR')"/> -->
+		<!-- <security:intercept-url pattern="/api/admin/**" access="hasRole('ROLE_QAUSR') 
+			or hasRole('ROLE_QAADM') or hasRole('ROLE_QAAPR')"/> -->
+		<security:form-login login-page="/login"
+			login-processing-url="/j_spring_security_check"
+			always-use-default-target="true" default-target-url="/monitor/monitor2"
+			authentication-failure-url="/login?fail=true" />
+		<security:logout logout-success-url="/"
+			logout-url="/j_spring_security_logout" />
+
+		<security:session-management
+			session-fixation-protection="newSession">
+			<security:concurrency-control
+				max-sessions="1" error-if-maximum-exceeded="false" />
+		</security:session-management>
+	</security:http>
+
+	<security:global-method-security
+		pre-post-annotations="enabled">
+		<!-- AspectJ pointcut expression that locates our "post" method and applies 
+			security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" 
+			access="ROLE_TELLER"/> -->
+	</security:global-method-security>
+
+</beans>
