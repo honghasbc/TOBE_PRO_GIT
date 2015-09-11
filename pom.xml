@@ -22,7 +22,7 @@
 			<artifactId>sqljdbc4</artifactId>
 			<version>3.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../TOBE_PRO_GIT/src/main/webapp/WEB-INF/lib/sqljdbc4.jar</systemPath>
+			<systemPath>${project.basedir}/../TOBE_PRO/src/main/webapp/WEB-INF/lib/sqljdbc4.jar</systemPath>
 		</dependency>
 
 		<dependency>
