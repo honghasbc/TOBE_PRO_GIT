@@ -35,7 +35,7 @@ import com.heb.enterprise.coms.utils.ConstantsWeb;
  * Controller for the Admin screen.
  * 
  * @author ha.than
- * asdfasfasfasdf
+ * mi that la bua doi
  */
 @Controller
 @RequestMapping(ConstantsWeb.ADMIN)
