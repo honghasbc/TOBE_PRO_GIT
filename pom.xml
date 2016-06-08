@@ -16,7 +16,7 @@
 	</properties>
 
 	<dependencies>
-<!-- 		Database dependencies -->
+<!-- 		Database dependencies -test->
 		<dependency>
 			<groupId>com.microsoft.sqlserver.jdbc</groupId>
 			<artifactId>sqljdbc4</artifactId>
